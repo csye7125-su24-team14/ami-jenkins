@@ -1,0 +1,55 @@
+name: Packer Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-and-format:
+    name: Validate and Format Packer Script
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: "latest"
+
+      - name: Init Packer
+        run: packer init .
+
+      - name: Format Packer Script
+        run: packer fmt .
+
+      - name: Validate Packer Script
+        run: packer validate .
+
+  build-ami:
+    name: Build and Get AMI ID
+    runs-on: ubuntu-latest
+    needs: validate-and-format
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: "latest"
+
+      - name: Build AMI
+        id: build-ami
+        env:
+          DOMAIN: ${{ vars.DOMAIN }}
+        run: |
+          packer build .
+          echo "::set-output name=ami_id::$(cat ami_id.txt)"
+
+      - name: Get AMI ID
+        run: |
+          echo "AMI ID: ${{ steps.build-ami.outputs.ami_id }}"
