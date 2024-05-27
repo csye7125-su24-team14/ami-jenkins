@@ -14,7 +14,9 @@ source "amazon-ebs" "my-ami" {
   ami_description = " AMI for Jenkins Server"
   instance_type   = "t2.micro"
   region          = "${var.aws_region}"
-  profile         = "${var.aws_profile}"
+//   profile         = "${var.aws_profile}"
+  access_key   = "${var.aws_access_key_id}"
+  secret_key   = "${var.aws_secret_access_key}"
   ssh_username    = "${var.ssh_username}"
   source_ami      = "${var.source_ami}"
   ami_regions     = ["${var.aws_region}"]
