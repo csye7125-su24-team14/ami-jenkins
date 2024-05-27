@@ -1,8 +1,7 @@
 name: Packer Validate
 on:
   pull_request:
-    branches:
-      - main
+    branches: [main]
 jobs:
   packer-validate-and-format:
     name: Format and validate Packer Script
