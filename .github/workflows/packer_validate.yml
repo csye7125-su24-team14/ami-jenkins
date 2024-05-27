@@ -5,30 +5,28 @@ on:
     branches:
       - main
 
-env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  DOMAIN: ${{ vars.DOMAIN }}
-
 jobs:
-  validate-and-format:
-    name: Validate and Format Packer Script
+  packer-validate-and-format:
+    name: Format and validate Packer Script
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup `packer`
-        uses: hashicorp/setup-packer@main
-        id: setup
+      - name: Format Packer template
+        uses: hashicorp/packer-github-actions@master
         with:
-          version: "latest"
+          command: fmt
+          arguments: -check -diff
+          target: main.pkr.hcl
+        env:
+          PACKER_LOG: 1
 
-      - name: Init Packer
-        run: packer init .
-
-      - name: Format Packer Script
-        run: packer fmt .
-
-      - name: Validate Packer Script
-        run: packer validate .
+      - name: Validate Packer template
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: validate
+          arguments: -syntax-only
+          target: main.pkr.hcl
+        env:
+          PACKER_LOG: 1
