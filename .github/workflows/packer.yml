@@ -6,11 +6,6 @@ on:
     branches:
       - main
 
-env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  DOMAIN: ${{ vars.DOMAIN }}
-
 jobs:
 
   build-ami:
@@ -20,21 +15,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup `packer`
-        uses: hashicorp/setup-packer@main
-        id: setup
+      - name: Packer build
+        uses: hashicorp/packer-github-actions@master
         with:
-          version: "latest"
-
-      - name: Init Packer
-        run: packer init .
-
-      - name: Build AMI
-        id: build-ami
-        run: |
-          packer build .
-          echo "::set-output name=ami_id::$(cat ami_id.txt)"
-
-      - name: Get AMI ID
-        run: |
-          echo "AMI ID: ${{ steps.build-ami.outputs.ami_id }}"
+          command: build
+          arguments: "-color=false -on-error=abort"
+          target: main.pkr.hcl
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          DOMAIN: ${{ vars.DOMAIN }}
