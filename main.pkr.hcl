@@ -18,13 +18,15 @@ variable "ssh_username" {
   default = "ubuntu"
 }
 
-// variable "aws_access_key_id" {
-//   type    = string
-// }
+variable "aws_access_key_id" {
+  type    = string
+  default = env("AWS_ACCESS_KEY_ID")
+}
 
-// variable "aws_secret_access_key" {
-//   type    = string
-// }
+variable "aws_secret_access_key" {
+  type    = string
+  default = env("AWS_SECRET_ACCESS_KEY")
+}
 
 build {
   name = "build-packer"
@@ -38,16 +40,16 @@ build {
 }
 
 source "amazon-ebs" "my-ami" {
+  // profile         = "${var.aws_profile}"
   ami_name        = "csye7125_${formatdate("YYYY_MM_DD_hh_mm_ss", timestamp())}"
   ami_description = " AMI for Jenkins Server"
   instance_type   = "t2.micro"
   region          = "${var.aws_region}"
-  // profile         = "${var.aws_profile}"
-  access_key   = env("AWS_ACCESS_KEY_ID")
-  secret_key   = env("AWS_SECRET_ACCESS_KEY")
-  ssh_username = "${var.ssh_username}"
-  source_ami   = "${var.source_ami}"
-  ami_regions  = ["${var.aws_region}"]
+  access_key      = "${var.aws_access_key_id}"
+  secret_key      = "${var.aws_secret_access_key}"
+  ssh_username    = "${var.ssh_username}"
+  source_ami      = "${var.source_ami}"
+  ami_regions     = ["${var.aws_region}"]
 
   ami_block_device_mappings {
     delete_on_termination = true
