@@ -28,6 +28,11 @@ variable "aws_secret_access_key" {
   default = env("AWS_SECRET_ACCESS_KEY")
 }
 
+variable "domain" {
+  type    = string
+  default = env("DOMAIN")
+}
+
 build {
   name = "build-packer"
   sources = [
@@ -35,6 +40,9 @@ build {
   ]
 
   provisioner "shell" {
+    environment_vars = [
+      "DOMAIN=${var.domain}"
+    ]
     script = "./scripts/script.sh"
   }
 }
