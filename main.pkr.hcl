@@ -15,8 +15,8 @@ source "amazon-ebs" "my-ami" {
   instance_type   = "t2.micro"
   region          = "${var.aws_region}"
   //   profile         = "${var.aws_profile}"
-  access_key   = "${var.aws_access_key_id}"
-  secret_key   = "${var.aws_secret_access_key}"
+  access_key   = env("AWS_ACCESS_KEY_ID")
+  secret_key   = env("AWS_SECRET_ACCESS_KEY")
   ssh_username = "${var.ssh_username}"
   source_ami   = "${var.source_ami}"
   ami_regions  = ["${var.aws_region}"]
