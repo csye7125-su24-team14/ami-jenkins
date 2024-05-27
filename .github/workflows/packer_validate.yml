@@ -1,10 +1,8 @@
 name: Packer Validate
-
 on:
   pull_request:
     branches:
       - main
-
 jobs:
   packer-validate-and-format:
     name: Format and validate Packer Script
@@ -12,21 +10,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Format Packer template
         uses: hashicorp/packer-github-actions@master
         with:
           command: fmt
-          arguments: -check -diff
+          arguments: '-check -diff'
           target: main.pkr.hcl
         env:
           PACKER_LOG: 1
-
       - name: Validate Packer template
         uses: hashicorp/packer-github-actions@master
         with:
           command: validate
-          arguments: -syntax-only
+          arguments: '-syntax-only'
           target: main.pkr.hcl
         env:
           PACKER_LOG: 1
