@@ -1,8 +1,7 @@
-name: Packer Build
+name: Packer Validate
 
 on:
   pull_request:
-    types: [closed]
     branches:
       - main
 

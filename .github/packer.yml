@@ -2,6 +2,7 @@ name: Packer Build
 
 on:
   pull_request:
+    types: [closed]
     branches:
       - main
 
@@ -11,27 +12,6 @@ env:
   DOMAIN: ${{ vars.DOMAIN }}
 
 jobs:
-  validate-and-format:
-    name: Validate and Format Packer Script
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup `packer`
-        uses: hashicorp/setup-packer@main
-        id: setup
-        with:
-          version: "latest"
-
-      - name: Init Packer
-        run: packer init .
-
-      - name: Format Packer Script
-        run: packer fmt .
-
-      - name: Validate Packer Script
-        run: packer validate .
 
   build-ami:
     name: Build and Get AMI ID
@@ -46,6 +26,9 @@ jobs:
         id: setup
         with:
           version: "latest"
+
+      - name: Init Packer
+        run: packer init .
 
       - name: Build AMI
         id: build-ami
