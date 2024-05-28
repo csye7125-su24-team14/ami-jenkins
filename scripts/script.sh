@@ -52,7 +52,7 @@ echo "{
 
 $DOMAIN {
     reverse_proxy localhost:8080
-}" | sudo tee /etc/caddy/Caddyfile >/dev/nulll
+}" | sudo tee /etc/caddy/Caddyfile >/dev/null
 
 # Restart Caddy
 sudo systemctl restart caddy
