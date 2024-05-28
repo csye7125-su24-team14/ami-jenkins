@@ -24,9 +24,11 @@ sudo apt-get install fontconfig openjdk-11-jre -y
 # Install Jenkins
 sudo apt-get install jenkins -y
 
+sudo systemctl enable jenkins
+
 # Start Jenkins
 sudo systemctl start jenkins
-sudo systemctl enable jenkins
+
 
 # Install required packages for adding Caddy repository
 sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
@@ -43,10 +45,14 @@ sudo apt update
 # Install Caddy
 sudo apt install caddy -y
 
-# Update caddyfile as reverse proxy
-echo "$DOMAIN {
+# Update caddyfile as reverse proxy using stagging env of lets encrypt
+echo "{
+    acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+$DOMAIN {
     reverse_proxy localhost:8080
-}" | sudo tee /etc/caddy/Caddyfile >/dev/null
+}" | sudo tee /etc/caddy/Caddyfile >/dev/nulll
 
 # Restart Caddy
 sudo systemctl restart caddy
