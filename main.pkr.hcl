@@ -39,6 +39,18 @@ build {
     "source.amazon-ebs.my-ami"
   ]
 
+
+  provisioner "file" {
+    source      = "admin-user.groovy"
+    destination = "admin-user.groovy"
+  }
+
+  provisioner "file" {
+    source      = "plugins.groovy"
+    destination = "plugins.groovy"
+  }
+
+
   provisioner "shell" {
     environment_vars = [
       "DOMAIN=${var.domain}"
