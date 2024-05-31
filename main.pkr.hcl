@@ -67,9 +67,9 @@ source "amazon-ebs" "my-ami" {
   region          = "${var.aws_region}"
   access_key      = "${var.aws_access_key_id}"
   secret_key      = "${var.aws_secret_access_key}"
-  ssh_username = "${var.ssh_username}"
-  source_ami   = "${var.source_ami}"
-  ami_regions  = ["${var.aws_region}"]
+  ssh_username    = "${var.ssh_username}"
+  source_ami      = "${var.source_ami}"
+  ami_regions     = ["${var.aws_region}"]
 
   ami_block_device_mappings {
     delete_on_termination = true
