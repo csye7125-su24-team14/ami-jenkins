@@ -12,6 +12,12 @@ import hudson.security.*
 final List<String> REQUIRED_PLUGINS = [
         "workflow-aggregator",
         "ws-cleanup",
+        "git",
+        "docker-build-publish",
+        "docker-workflow",
+        "docker-plugin",
+        "docker-build-step",
+        "job-dsl"
 ]
 
 if (Jenkins.instance.pluginManager.plugins.collect {
