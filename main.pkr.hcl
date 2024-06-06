@@ -58,6 +58,11 @@ build {
     destination = "job_dsl_script.groovy"
   }
 
+  provisioner "file" {
+    source      = "seed_job.groovy"
+    destination = "seed_job.groovy"
+  }
+
 
   provisioner "shell" {
     script = "./scripts/script.sh"
