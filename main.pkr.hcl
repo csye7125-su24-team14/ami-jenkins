@@ -16,7 +16,7 @@ variable "source_ami" {
 variable "ssh_username" {
   type    = string
   default = "ubuntu"
-}
+
 
 variable "aws_access_key_id" {
   type    = string
