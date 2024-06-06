@@ -30,7 +30,7 @@ if (Jenkins.instance.pluginManager.plugins.collect {
   }
   Jenkins.instance.restart()
   println 'Run this script again after restarting to create the jobs!'
-  throw new RestartRequiredException(null)
+  // throw new RestartRequiredException(null)
 }
 
 println "Plugins were installed successfully"
