@@ -49,12 +49,17 @@ build {
     source      = "plugins.groovy"
     destination = "plugins.groovy"
   }
+  provisioner "file" {
+    source      = "docker_credential.groovy"
+    destination = "docker_credential.groovy"
+  }
+  provisioner "file" {
+    source      = "job_dsl_script.groovy"
+    destination = "job_dsl_script.groovy"
+  }
 
 
   provisioner "shell" {
-    environment_vars = [
-      "DOMAIN=${var.domain}"
-    ]
     script = "./scripts/script.sh"
   }
 }
