@@ -41,25 +41,25 @@ build {
 
 
   provisioner "file" {
-    source      = "admin-user.groovy"
+    source      = "./scripts/jenkins_init/admin-user.groovy"
     destination = "admin-user.groovy"
   }
 
   provisioner "file" {
-    source      = "plugins.groovy"
+    source      = "./scripts/jenkins_init/plugins.groovy"
     destination = "plugins.groovy"
   }
   provisioner "file" {
-    source      = "docker_credential.groovy"
+    source      = "./scripts/jenkins_init/docker_credential.groovy"
     destination = "docker_credential.groovy"
   }
   provisioner "file" {
-    source      = "job_dsl_script.groovy"
+    source      = "./scripts/jenkins_init/job_dsl_script.groovy"
     destination = "job_dsl_script.groovy"
   }
 
   provisioner "file" {
-    source      = "seed_job.groovy"
+    source      = "./scripts/jenkins_init/seed_job.groovy"
     destination = "seed_job.groovy"
   }
 
