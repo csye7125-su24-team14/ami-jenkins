@@ -36,7 +36,9 @@ pipelineJob('caddy-docker-job') {
             scriptPath('Jenkinsfile')
         }
     }
-    
+    triggers {
+        githubPush()
+    }
 }
 """
 
