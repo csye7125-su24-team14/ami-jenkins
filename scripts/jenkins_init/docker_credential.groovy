@@ -47,7 +47,15 @@ store.addCredentials(domain, dockerCredentials)
 store.addCredentials(domain, githubCredentials)
 
 // Create the configuration job interface from a jobDSL script
-def jobDslScript = new File('/var/lib/jenkins/dsl_scripts/job_dsl_script.groovy')
+def jobDslScript = new File('/var/lib/jenkins/dsl_scripts/static_site_builder.groovy')
 def workspace = new File('.')
 def jobManagement = new JenkinsJobManagement(System.out, [:], workspace)
+new DslScriptLoader(jobManagement).runScript(jobDslScript.text)
+
+jobDslScript = new File('/var/lib/jenkins/dsl_scripts/pr_check_helm.groovy')
+workspace = new File('.')
+jobManagement = new JenkinsJobManagement(System.out, [:], workspace)
+new DslScriptLoader(jobManagement).runScript(jobDslScript.text)
+
+jobDslScript = new File('/var/lib/jenkins/dsl_scripts/pr_check_webapp_cve.groovy')
 new DslScriptLoader(jobManagement).runScript(jobDslScript.text)
