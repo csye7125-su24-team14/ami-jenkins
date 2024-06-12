@@ -54,13 +54,18 @@ build {
     destination = "docker_credential.groovy"
   }
   provisioner "file" {
-    source      = "./scripts/jenkins_init/job_dsl_script.groovy"
-    destination = "job_dsl_script.groovy"
+    source      = "./scripts/jenkins_init/static_site_builder.groovy"
+    destination = "static_site_builder.groovy"
   }
 
   provisioner "file" {
-    source      = "./scripts/jenkins_init/seed_job.groovy"
-    destination = "seed_job.groovy"
+    source      = "./scripts/jenkins_init/pr_check_helm.groovy"
+    destination = "pr_check_helm.groovy"
+  }
+
+  provisioner "file" {
+    source      = "./scripts/jenkins_init/pr_check_webapp_cve.groovy"
+    destination = "pr_check_webapp_cve.groovy"
   }
 
 

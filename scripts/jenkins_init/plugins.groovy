@@ -18,7 +18,9 @@ final List<String> REQUIRED_PLUGINS = [
         "docker-workflow",
         "docker-plugin",
         "docker-build-step",
-        "job-dsl"
+        "job-dsl",
+        "conventional-commits",
+        "github-branch-source"
 ]
 
 if (Jenkins.instance.pluginManager.plugins.collect {
