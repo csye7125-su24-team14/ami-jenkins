@@ -57,5 +57,16 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.
 sudo apt-get update
 sudo apt-get install helm
 
-
-
+sudo apt-get install -y curl
+curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+sudo -E bash nodesource_setup.sh
+sudo apt-get install -y nodejs
+sudo apt install npm -y
+sudo node -v
+sudo npm -v
+sudo npm install -g semantic-release@17.4.4
+sudo npm install -g @semantic-release/git@9.0.0
+sudo npm install -g @semantic-release/exec@5.0.0
+sudo npm install -g conventional-changelog-conventionalcommits
+sudo npm install -g npm-cli-login
+sudo apt install gh -y
