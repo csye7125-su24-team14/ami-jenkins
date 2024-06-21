@@ -70,3 +70,8 @@ sudo npm install -g @semantic-release/exec@5.0.0
 sudo npm install -g conventional-changelog-conventionalcommits
 sudo npm install -g npm-cli-login
 sudo apt install gh -y
+
+
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install terraform

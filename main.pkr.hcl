@@ -68,6 +68,11 @@ build {
     destination = "pr_check_webapp_cve.groovy"
   }
 
+  provisioner "file" {
+    source      = "./scripts/jenkins_init/pr_check_infra_aws.groovy"
+    destination = "pr_check_infra_aws.groovy"
+  }
+
 
   provisioner "shell" {
     script = "./scripts/script.sh"
