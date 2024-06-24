@@ -69,6 +69,16 @@ build {
   }
 
   provisioner "file" {
+    source      = "./scripts/jenkins_init/pr_check_webapp_consumer.groovy"
+    destination = "pr_check_webapp_consumer.groovy"
+  }
+
+  provisioner "file" {
+    source      = "./scripts/jenkins_init/pr_check_webapp_producer.groovy"
+    destination = "pr_check_webapp_producer.groovy"
+  }
+
+  provisioner "file" {
     source      = "./scripts/jenkins_init/pr_check_infra_aws.groovy"
     destination = "pr_check_infra_aws.groovy"
   }
