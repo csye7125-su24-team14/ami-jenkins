@@ -82,6 +82,10 @@ build {
     source      = "./scripts/jenkins_init/pr_check_infra_aws.groovy"
     destination = "pr_check_infra_aws.groovy"
   }
+  provisioner "file" {
+    source      = "./scripts/jenkins_init/pr_check_helm_webapp_consumer.groovy"
+    destination = "pr_check_helm_webapp_consumer.groovy"
+  }
 
 
   provisioner "shell" {

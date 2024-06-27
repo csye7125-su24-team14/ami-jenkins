@@ -18,8 +18,8 @@ pipelineJob('caddy-docker-job') {
         githubPush()
     }
 }
-pipelineJob('semantic-release-helm') {
-    description('Pipeline Job to do semantic release on Healm')
+pipelineJob('semantic-release-helm-cve-processor') {
+    description('Pipeline Job to do semantic release on Helm chart for CVE processor.')
     definition {
         cpsScm {
             scm {
@@ -38,14 +38,74 @@ pipelineJob('semantic-release-helm') {
         githubPush()
     }
 }
-pipelineJob('webapp-container-builder') {
-    description('This job will build the webapp container and push it to Docker Hub.')
+pipelineJob('semantic-release-helm-cve-consumer') {
+    description('Pipeline Job to do semantic release on Helm chart for CVE consumer.')
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/csye7125-su24-team14/helm-webapp-cve-consumer.git')
+                        credentials('github-ssh-key')
+                    }
+                    branches('main')
+                }
+            }
+            scriptPath('Jenkinsfile.semantic-release')
+        }
+    }
+    triggers {
+        githubPush()
+    }
+}
+pipelineJob('webapp-cve-processor-container-builder') {
+    description('This job will build the webapp cve processor container and push it to Docker Hub.')
     definition {
         cpsScm {
             scm {
                 git {
                     remote {
                         url('https://github.com/csye7125-su24-team14/webapp-cve-processor.git')
+                        credentials('github-ssh-key')
+                    }
+                    branches('main')
+                }
+            }
+            scriptPath('Jenkinsfile-containerize')
+        }
+    }
+    triggers {
+        githubPush()
+    }
+}
+pipelineJob('webapp-cve-consumer-container-builder') {
+    description('This job will build the webapp cve consumer container and push it to Docker Hub.')
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/csye7125-su24-team14/webapp-cve-consumer.git')
+                        credentials('github-ssh-key')
+                    }
+                    branches('main')
+                }
+            }
+            scriptPath('Jenkinsfile-containerize')
+        }
+    }
+    triggers {
+        githubPush()
+    }
+}
+pipelineJob('webapp-cve-producer-container-builder') {
+    description('This job will build the webapp cve producer container and push it to Docker Hub.')
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/csye7125-su24-team14/webapp-cve-producer.git')
                         credentials('github-ssh-key')
                     }
                     branches('main')
