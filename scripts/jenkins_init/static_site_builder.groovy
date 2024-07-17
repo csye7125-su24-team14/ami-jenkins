@@ -72,7 +72,7 @@ pipelineJob('image-mirroring-eks-autoscaler') {
                     branches('main')
                 }
             }
-            scriptPath('Jenkinsfile.image-mirroring)
+            scriptPath('Jenkinsfile-image-mirroring)
         }
     }
     triggers {
@@ -92,7 +92,7 @@ pipelineJob('semantic-release-helm-eks-autoscaler') {
                     branches('main')
                 }
             }
-            scriptPath('Jenkinsfile.semantic-release')
+            scriptPath('Jenkinsfile-semantic-release')
         }
     }
     triggers {
