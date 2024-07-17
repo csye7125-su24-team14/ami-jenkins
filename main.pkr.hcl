@@ -86,6 +86,10 @@ build {
     source      = "./scripts/jenkins_init/pr_check_helm_webapp_consumer.groovy"
     destination = "pr_check_helm_webapp_consumer.groovy"
   }
+    provisioner "file" {
+    source      = "./scripts/jenkins_init/pr_check_helm_eks_autoscaler.groovy"
+    destination = "pr_check_helm_eks_autoscaler.groovy"
+  }
 
 
   provisioner "shell" {

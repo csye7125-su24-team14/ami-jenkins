@@ -58,6 +58,48 @@ pipelineJob('semantic-release-helm-cve-consumer') {
         githubPush()
     }
 }
+//HELM-EKS-AUTOSCALER
+pipelineJob('image-mirroring-eks-autoscaler') {
+    description('Pipeline Job to mirror autoscaler image to docker hub.')
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/csye7125-su24-team14/helm-eks-autoscaler.git')
+                        credentials('github-ssh-key')
+                    }
+                    branches('main')
+                }
+            }
+            scriptPath('Jenkinsfile.image-mirroring)
+        }
+    }
+    triggers {
+        githubPush()
+    }
+}
+pipelineJob('semantic-release-helm-eks-autoscaler') {
+    description('Pipeline Job to do semantic release on Helm chart for EKS Cluster Autoscaler.')
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/csye7125-su24-team14/helm-eks-autoscaler.git')
+                        credentials('github-ssh-key')
+                    }
+                    branches('main')
+                }
+            }
+            scriptPath('Jenkinsfile.semantic-release')
+        }
+    }
+    triggers {
+        githubPush()
+    }
+}
+//HELM-EKS-AUTOSCALER
 pipelineJob('webapp-cve-processor-container-builder') {
     description('This job will build the webapp cve processor container and push it to Docker Hub.')
     definition {
