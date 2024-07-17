@@ -20,7 +20,8 @@ final List<String> REQUIRED_PLUGINS = [
         "docker-build-step",
         "job-dsl",
         "github-branch-source",
-        "nodejs"
+        "nodejs",
+        "pipeline-utility-steps"
 ]
 
 if (Jenkins.instance.pluginManager.plugins.collect {

@@ -72,7 +72,7 @@ pipelineJob('image-mirroring-eks-autoscaler') {
                     branches('main')
                 }
             }
-            scriptPath('Jenkinsfile-image-mirroring)
+            scriptPath('Jenkinsfile-image-mirroring')
         }
     }
     triggers {

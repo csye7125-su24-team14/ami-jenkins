@@ -6,7 +6,7 @@ multibranchPipelineJob('pullrequest-check-helm-eks-autoscaler') {
             id('pullrequest-check-helm-eks-autoscaler')
             apiUri('https://api.github.com')
             repoOwner('csye7125-su24-team14')
-            repository('helm-eks-autoscaler')
+            repository('helm-eks-autoscaler.git')
             scanCredentialsId('github-ssh-key') 
             buildForkPRHead(true) 
             includes('*')
