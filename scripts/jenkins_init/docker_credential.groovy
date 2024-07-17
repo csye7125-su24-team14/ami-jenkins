@@ -71,3 +71,6 @@ new DslScriptLoader(jobManagement).runScript(jobDslScript.text)
 
 jobDslScript = new File('/var/lib/jenkins/dsl_scripts/pr_check_helm_webapp_consumer.groovy')
 new DslScriptLoader(jobManagement).runScript(jobDslScript.text)
+
+jobDslScript = new File('/var/lib/jenkins/dsl_scripts/pr_check_helm_eks_autoscaler.groovy')
+new DslScriptLoader(jobManagement).runScript(jobDslScript.text)
