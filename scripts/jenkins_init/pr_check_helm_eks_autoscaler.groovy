@@ -1,12 +1,12 @@
-multibranchPipelineJob('pullrequest-check-helm-webapp-consumer') {
-    displayName('pullrequest-check-helm-webapp-consumer')
+multibranchPipelineJob('pullrequest-check-helm-eks-autoscaler') {
+    displayName('pullrequest-check-helm-eks-autoscaler')
     description('Checks status on pull request')
     branchSources {
         github {
-            id('pullrequest-check-helm-webapp-consumer')
+            id('pullrequest-check-helm-eks-autoscaler')
             apiUri('https://api.github.com')
             repoOwner('csye7125-su24-team14')
-            repository('helm-webapp-cve-consumer')
+            repository('helm-eks-autoscaler')
             scanCredentialsId('github-ssh-key') 
             buildForkPRHead(true) 
             includes('*')
