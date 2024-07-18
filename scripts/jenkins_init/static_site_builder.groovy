@@ -160,3 +160,43 @@ pipelineJob('webapp-cve-producer-container-builder') {
         githubPush()
     }
 }
+pipelineJob('semantic-release-helm-postgres') {
+    description('Pipeline Job to do semantic release on Postgres chart in EKS Cluster.')
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/csye7125-su24-team14/helm-postgresql.git')
+                        credentials('github-ssh-key')
+                    }
+                    branches('main')
+                }
+            }
+            scriptPath('Jenkinsfile-semantic-release')
+        }
+    }
+    triggers {
+        githubPush()
+    }
+}
+pipelineJob('semantic-release-helm-kafka') {
+    description('Pipeline Job to do semantic release on Kafka chart in EKS Cluster.')
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/csye7125-su24-team14/helm-kafka.git')
+                        credentials('github-ssh-key')
+                    }
+                    branches('main')
+                }
+            }
+            scriptPath('Jenkinsfile-semantic-release')
+        }
+    }
+    triggers {
+        githubPush()
+    }
+}
