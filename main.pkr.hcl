@@ -90,11 +90,11 @@ build {
     source      = "./scripts/jenkins_init/pr_check_helm_eks_autoscaler.groovy"
     destination = "pr_check_helm_eks_autoscaler.groovy"
   }
-   provisioner "file" {
+  provisioner "file" {
     source      = "./scripts/jenkins_init/pr_check_cve_operator.groovy"
     destination = "pr_check_cve_operator.groovy"
   }
-  
+
 
 
   provisioner "shell" {
