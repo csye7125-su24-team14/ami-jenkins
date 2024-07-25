@@ -200,3 +200,23 @@ pipelineJob('semantic-release-helm-kafka') {
         githubPush()
     }
 }
+pipelineJob('cve-operator-container-builder') {
+    description('This job will build the  cve operator container and push it to Docker Hub.')
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/csye7125-su24-team14/cve-operator.git')
+                        credentials('github-ssh-key')
+                    }
+                    branches('main')
+                }
+            }
+            scriptPath('Jenkinsfile-containerize')
+        }
+    }
+    triggers {
+        githubPush()
+    }
+}
