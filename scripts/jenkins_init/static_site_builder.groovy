@@ -220,3 +220,23 @@ pipelineJob('cve-operator-container-builder') {
         githubPush()
     }
 }
+pipelineJob('cve-llm-container-builder') {
+    description('This job will build the  cve llm container and push it to Docker Hub.')
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/csye7125-su24-team14/cve-intelligence-rag.git')
+                        credentials('github-ssh-key')
+                    }
+                    branches('main')
+                }
+            }
+            scriptPath('Jenkinsfile')
+        }
+    }
+    triggers {
+        githubPush()
+    }
+}

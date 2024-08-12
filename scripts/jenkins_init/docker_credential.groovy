@@ -78,3 +78,6 @@ new DslScriptLoader(jobManagement).runScript(jobDslScript.text)
 
 jobDslScript = new File('/var/lib/jenkins/dsl_scripts/pr_check_cve_operator.groovy')
 new DslScriptLoader(jobManagement).runScript(jobDslScript.text)
+
+jobDslScript = new File('/var/lib/jenkins/dsl_scripts/pr_check_cve_llm.groovy')
+new DslScriptLoader(jobManagement).runScript(jobDslScript.text)
