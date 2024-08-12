@@ -94,7 +94,10 @@ build {
     source      = "./scripts/jenkins_init/pr_check_cve_operator.groovy"
     destination = "pr_check_cve_operator.groovy"
   }
-
+  provisioner "file" {
+    source      = "./scripts/jenkins_init/pr_check_cve_llm.groovy"
+    destination = "pr_check_cve_llm.groovy"
+  }
 
 
   provisioner "shell" {
