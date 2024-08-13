@@ -240,3 +240,23 @@ pipelineJob('cve-llm-container-builder') {
         githubPush()
     }
 }
+pipelineJob('semantic-release-helm-cve-intelligence-rag') {
+    description('Pipeline Job to do semantic release on CVE RAG chart in EKS Cluster.')
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/csye7125-su24-team14/helm-cve-intelligence-rag.git')
+                        credentials('github-ssh-key')
+                    }
+                    branches('main')
+                }
+            }
+            scriptPath('Jenkinsfile-semantic')
+        }
+    }
+    triggers {
+        githubPush()
+    }
+}
