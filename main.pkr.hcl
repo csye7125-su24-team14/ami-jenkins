@@ -98,6 +98,10 @@ build {
     source      = "./scripts/jenkins_init/pr_check_cve_llm.groovy"
     destination = "pr_check_cve_llm.groovy"
   }
+    provisioner "file" {
+    source      = "./scripts/jenkins_init/pr_check_cve_llm_helm.groovy"
+    destination = "pr_check_cve_llm_helm.groovy"
+  }
 
 
   provisioner "shell" {
